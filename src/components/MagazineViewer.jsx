@@ -110,12 +110,12 @@ export default function MagazineViewer() {
             >
               {numPages && (
                 <HTMLFlipBook
-                  width={420}
-                  height={594}
+                  width={800}
+                  height={1131}
                   size="stretch"
-                  minWidth={315}
+                  minWidth={400}
                   maxWidth={3000}
-                  minHeight={445}
+                  minHeight={500}
                   maxHeight={4000}
                   maxShadowOpacity={0.5}
                   showCover={true}
