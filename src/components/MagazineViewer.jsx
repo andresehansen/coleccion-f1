@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, forwardRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect, forwardRef } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { BookOpen, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, Maximize } from 'lucide-react';
@@ -38,57 +38,17 @@ export default function MagazineViewer() {
   const [pageNumber, setPageNumber] = useState(1);
   const [zoom, setZoom] = useState(1);
   const [error, setError] = useState(null);
-  const [bookDimensions, setBookDimensions] = useState({ width: 0, height: 0 });
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const flipBookRef = useRef(null);
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
 
-  useLayoutEffect(() => {
-    const updateDimensions = () => {
-      if (wrapperRef.current) {
-        // En pantalla completa aprovechamos el 100% del alto, en vista normal dejamos 5% de margen
-        const isFullscreen = !!document.fullscreenElement;
-        const multiplier = isFullscreen ? 1.0 : 0.95;
-        
-        const W = wrapperRef.current.clientWidth * multiplier;
-        const H = wrapperRef.current.clientHeight * multiplier;
-        
-        let bookW, bookH;
-        // La proporción de 2 páginas A4 juntas es 1.414 (ancho/alto)
-        const bookRatio = 1.414;
-        const containerRatio = W / H;
-        
-        if (containerRatio > bookRatio) {
-          // La pantalla es más ancha que el libro. La altura es el límite.
-          bookH = H;
-          bookW = H * bookRatio;
-        } else {
-          // La pantalla es más alta que el libro. El ancho es el límite.
-          bookW = W;
-          bookH = W / bookRatio;
-        }
-        
-        setBookDimensions({
-          width: Math.floor(bookW / 2), // react-pageflip necesita el ancho de UNA sola página
-          height: Math.floor(bookH)
-        });
-      }
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
     };
-
-    // Darle un pequeño retraso a la primera medición para que el DOM se asiente
-    setTimeout(updateDimensions, 100);
-    
-    const onResizeOrFullscreen = () => {
-      setTimeout(updateDimensions, 150); // Esperar a que el navegador redibuje
-    };
-
-    window.addEventListener('resize', onResizeOrFullscreen);
-    document.addEventListener('fullscreenchange', onResizeOrFullscreen);
-    
-    return () => {
-      window.removeEventListener('resize', onResizeOrFullscreen);
-      document.removeEventListener('fullscreenchange', onResizeOrFullscreen);
-    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
   const toggleFullscreen = () => {
@@ -151,18 +111,26 @@ export default function MagazineViewer() {
             <p className="text-muted">Asegúrate de que el archivo coleccion_F1.pdf existe en la carpeta public.</p>
           </div>
         ) : (
-          <div className="flipbook-wrapper" ref={wrapperRef} style={{ transform: `scale(${zoom})`, transformOrigin: 'center center' }}>
+          <div className="flipbook-wrapper" ref={wrapperRef} style={{ 
+            transform: `scale(${zoom})`, 
+            transformOrigin: 'center center',
+            padding: isFullscreen ? '0' : '3rem'
+          }}>
             <Document
               file={`${import.meta.env.BASE_URL}coleccion_F1.pdf`}
               onLoadSuccess={onDocumentLoadSuccess}
               onLoadError={onDocumentLoadError}
               loading={<div className="loading-state">Cargando revista...</div>}
             >
-              {numPages && bookDimensions.width > 0 && (
+              {numPages && (
                 <HTMLFlipBook
-                  width={bookDimensions.width}
-                  height={bookDimensions.height}
-                  size="fixed"
+                  width={800}
+                  height={1131}
+                  size="stretch"
+                  minWidth={400}
+                  maxWidth={4000}
+                  minHeight={500}
+                  maxHeight={4000}
                   maxShadowOpacity={0.5}
                   showCover={true}
                   mobileScrollSupport={true}
