@@ -77,12 +77,17 @@ export default function MagazineViewer() {
 
     // Darle un pequeño retraso a la primera medición para que el DOM se asiente
     setTimeout(updateDimensions, 100);
-    window.addEventListener('resize', updateDimensions);
-    document.addEventListener('fullscreenchange', updateDimensions);
+    
+    const onResizeOrFullscreen = () => {
+      setTimeout(updateDimensions, 150); // Esperar a que el navegador redibuje
+    };
+
+    window.addEventListener('resize', onResizeOrFullscreen);
+    document.addEventListener('fullscreenchange', onResizeOrFullscreen);
     
     return () => {
-      window.removeEventListener('resize', updateDimensions);
-      document.removeEventListener('fullscreenchange', updateDimensions);
+      window.removeEventListener('resize', onResizeOrFullscreen);
+      document.removeEventListener('fullscreenchange', onResizeOrFullscreen);
     };
   }, []);
 
