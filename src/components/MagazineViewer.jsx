@@ -103,7 +103,7 @@ export default function MagazineViewer() {
         ) : (
           <div className="flipbook-wrapper" style={{ transform: `scale(${zoom})`, transformOrigin: 'top center' }}>
             <Document
-              file="/coleccion_F1.pdf"
+              file={`${import.meta.env.BASE_URL}coleccion_F1.pdf`}
               onLoadSuccess={onDocumentLoadSuccess}
               onLoadError={onDocumentLoadError}
               loading={<div className="loading-state">Cargando revista...</div>}
