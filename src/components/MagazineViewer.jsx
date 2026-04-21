@@ -46,9 +46,12 @@ export default function MagazineViewer() {
   useLayoutEffect(() => {
     const updateDimensions = () => {
       if (wrapperRef.current) {
-        // Tomamos el 95% del tamaño para dejar un margen respirable automáticamente
-        const W = wrapperRef.current.clientWidth * 0.95;
-        const H = wrapperRef.current.clientHeight * 0.95;
+        // En pantalla completa aprovechamos el 100% del alto, en vista normal dejamos 5% de margen
+        const isFullscreen = !!document.fullscreenElement;
+        const multiplier = isFullscreen ? 1.0 : 0.95;
+        
+        const W = wrapperRef.current.clientWidth * multiplier;
+        const H = wrapperRef.current.clientHeight * multiplier;
         
         let bookW, bookH;
         // La proporción de 2 páginas A4 juntas es 1.414 (ancho/alto)
@@ -75,7 +78,12 @@ export default function MagazineViewer() {
     // Darle un pequeño retraso a la primera medición para que el DOM se asiente
     setTimeout(updateDimensions, 100);
     window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
+    document.addEventListener('fullscreenchange', updateDimensions);
+    
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+      document.removeEventListener('fullscreenchange', updateDimensions);
+    };
   }, []);
 
   const toggleFullscreen = () => {
