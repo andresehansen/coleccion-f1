@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, forwardRef } from 'react';
+import React, { useState, useRef, useEffect, forwardRef, useLayoutEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { BookOpen, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, Maximize } from 'lucide-react';
@@ -38,17 +38,49 @@ export default function MagazineViewer() {
   const [pageNumber, setPageNumber] = useState(1);
   const [zoom, setZoom] = useState(1);
   const [error, setError] = useState(null);
+  const [baseScale, setBaseScale] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const flipBookRef = useRef(null);
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
 
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+  useLayoutEffect(() => {
+    const updateScale = () => {
+      if (wrapperRef.current) {
+        const isFS = !!document.fullscreenElement;
+        setIsFullscreen(isFS);
+        
+        const W = wrapperRef.current.clientWidth;
+        const H = wrapperRef.current.clientHeight;
+        
+        // Dimensiones estáticas enormes del libro (1600x1131)
+        const bookW = 1600;
+        const bookH = 1131;
+        
+        // Calculamos la escala exacta para que quepa en la pantalla
+        let newScale = Math.min(W / bookW, H / bookH);
+        
+        // En vista normal dejamos un 5% de colchón
+        if (!isFS) {
+          newScale *= 0.95;
+        }
+        
+        setBaseScale(newScale);
+      }
     };
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+
+    setTimeout(updateScale, 100);
+
+    const onResizeOrFullscreen = () => {
+      setTimeout(updateScale, 150);
+    };
+
+    window.addEventListener('resize', onResizeOrFullscreen);
+    document.addEventListener('fullscreenchange', onResizeOrFullscreen);
+    return () => {
+      window.removeEventListener('resize', onResizeOrFullscreen);
+      document.removeEventListener('fullscreenchange', onResizeOrFullscreen);
+    };
   }, []);
 
   const toggleFullscreen = () => {
@@ -112,9 +144,9 @@ export default function MagazineViewer() {
           </div>
         ) : (
           <div className="flipbook-wrapper" ref={wrapperRef} style={{ 
-            transform: `scale(${zoom})`, 
+            transform: `scale(${baseScale * zoom})`, 
             transformOrigin: 'center center',
-            padding: isFullscreen ? '0' : '3rem'
+            padding: 0
           }}>
             <Document
               file={`${import.meta.env.BASE_URL}coleccion_F1.pdf`}
@@ -126,11 +158,7 @@ export default function MagazineViewer() {
                 <HTMLFlipBook
                   width={800}
                   height={1131}
-                  size="stretch"
-                  minWidth={400}
-                  maxWidth={4000}
-                  minHeight={500}
-                  maxHeight={4000}
+                  size="fixed"
                   maxShadowOpacity={0.5}
                   showCover={true}
                   mobileScrollSupport={true}
