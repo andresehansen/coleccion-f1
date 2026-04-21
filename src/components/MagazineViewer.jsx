@@ -114,9 +114,9 @@ export default function MagazineViewer() {
                   height={594}
                   size="stretch"
                   minWidth={315}
-                  maxWidth={1000}
+                  maxWidth={3000}
                   minHeight={445}
-                  maxHeight={1414}
+                  maxHeight={4000}
                   maxShadowOpacity={0.5}
                   showCover={true}
                   mobileScrollSupport={true}
