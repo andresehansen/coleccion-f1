@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, forwardRef } from 'react';
+import React, { useState, useRef, useEffect, forwardRef, useLayoutEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { BookOpen, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, Maximize } from 'lucide-react';
@@ -38,8 +38,45 @@ export default function MagazineViewer() {
   const [pageNumber, setPageNumber] = useState(1);
   const [zoom, setZoom] = useState(1);
   const [error, setError] = useState(null);
+  const [bookDimensions, setBookDimensions] = useState({ width: 0, height: 0 });
   const flipBookRef = useRef(null);
   const containerRef = useRef(null);
+  const wrapperRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const updateDimensions = () => {
+      if (wrapperRef.current) {
+        // Tomamos el 95% del tamaño para dejar un margen respirable automáticamente
+        const W = wrapperRef.current.clientWidth * 0.95;
+        const H = wrapperRef.current.clientHeight * 0.95;
+        
+        let bookW, bookH;
+        // La proporción de 2 páginas A4 juntas es 1.414 (ancho/alto)
+        const bookRatio = 1.414;
+        const containerRatio = W / H;
+        
+        if (containerRatio > bookRatio) {
+          // La pantalla es más ancha que el libro. La altura es el límite.
+          bookH = H;
+          bookW = H * bookRatio;
+        } else {
+          // La pantalla es más alta que el libro. El ancho es el límite.
+          bookW = W;
+          bookH = W / bookRatio;
+        }
+        
+        setBookDimensions({
+          width: Math.floor(bookW / 2), // react-pageflip necesita el ancho de UNA sola página
+          height: Math.floor(bookH)
+        });
+      }
+    };
+
+    // Darle un pequeño retraso a la primera medición para que el DOM se asiente
+    setTimeout(updateDimensions, 100);
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -101,22 +138,18 @@ export default function MagazineViewer() {
             <p className="text-muted">Asegúrate de que el archivo coleccion_F1.pdf existe en la carpeta public.</p>
           </div>
         ) : (
-          <div className="flipbook-wrapper" style={{ transform: `scale(${zoom})`, transformOrigin: 'top center' }}>
+          <div className="flipbook-wrapper" ref={wrapperRef} style={{ transform: `scale(${zoom})`, transformOrigin: 'center center' }}>
             <Document
               file={`${import.meta.env.BASE_URL}coleccion_F1.pdf`}
               onLoadSuccess={onDocumentLoadSuccess}
               onLoadError={onDocumentLoadError}
               loading={<div className="loading-state">Cargando revista...</div>}
             >
-              {numPages && (
+              {numPages && bookDimensions.width > 0 && (
                 <HTMLFlipBook
-                  width={800}
-                  height={1131}
-                  size="stretch"
-                  minWidth={400}
-                  maxWidth={3000}
-                  minHeight={500}
-                  maxHeight={4000}
+                  width={bookDimensions.width}
+                  height={bookDimensions.height}
+                  size="fixed"
                   maxShadowOpacity={0.5}
                   showCover={true}
                   mobileScrollSupport={true}

@@ -338,7 +338,7 @@ input:focus, textarea:focus {
 .magazine-content {
   flex: 1;
   background: #2a2a30;
-  overflow: hidden;
+  overflow: auto; /* Allow scrolling when zoomed in */
   position: relative;
   min-height: 600px;
 }
@@ -349,7 +349,7 @@ input:focus, textarea:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 3rem; /* Breathing room */
+  padding: 0; /* Margin handled by JS math */
   box-sizing: border-box;
   display: flex;
   justify-content: center;
