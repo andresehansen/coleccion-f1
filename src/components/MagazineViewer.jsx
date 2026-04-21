@@ -24,7 +24,7 @@ const PDFPage = forwardRef(({ pageNumber }, ref) => {
       <div className="page-content">
         <Page 
           pageNumber={pageNumber} 
-          width={400} 
+          width={800} 
           renderTextLayer={false} 
           renderAnnotationLayer={false} 
         />
