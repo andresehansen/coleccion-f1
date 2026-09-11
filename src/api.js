@@ -3,8 +3,20 @@ import axios from 'axios';
 const API_URL = 'http://localhost:8000/api';
 
 export const getCollection = async () => {
-  const { data } = await axios.get(`${API_URL}/coleccion`);
-  return data;
+  try {
+    const { data } = await axios.get(`${API_URL}/coleccion`);
+    if (data && data.length > 0) return data;
+  } catch (err) {
+    console.warn("Backend API no disponible, usando collection.json local...", err.message);
+  }
+  try {
+    const res = await fetch(`${import.meta.env.BASE_URL}collection.json`);
+    const staticData = await res.json();
+    return staticData;
+  } catch (err2) {
+    console.error("Error cargando collection.json de respaldo:", err2);
+    return [];
+  }
 };
 
 export const generateIA = async (modelo, piloto) => {
