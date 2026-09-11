@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Dashboard from './components/Dashboard';
 import AIGenerator from './components/AIGenerator';
 import ExportPanel from './components/ExportPanel';
-import MagazineViewer from './components/MagazineViewer';
-import { LayoutDashboard, Sparkles, Printer, BookOpen, Layers } from 'lucide-react';
+import { LayoutDashboard, Sparkles, Printer } from 'lucide-react';
 
 function App() {
   const isPublicMode = import.meta.env.PROD;
@@ -27,14 +26,6 @@ function App() {
             onClick={() => setActiveTab('dashboard')}
           >
             <LayoutDashboard size={18} /> Catálogo Showroom
-          </button>
-
-          <button 
-            className={`btn ${activeTab === 'magazine' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ justifyContent: 'flex-start', padding: '12px 18px', textAlign: 'left' }}
-            onClick={() => setActiveTab('magazine')}
-          >
-            <BookOpen size={18} /> Visor Revista PDF
           </button>
           
           {!isPublicMode && (
@@ -71,7 +62,6 @@ function App() {
       {/* Main Content */}
       <main className="main-content">
         {activeTab === 'dashboard' && <Dashboard />}
-        {activeTab === 'magazine' && <MagazineViewer />}
         {!isPublicMode && activeTab === 'ai' && <AIGenerator onSaveSuccess={() => setActiveTab('dashboard')} />}
         {!isPublicMode && activeTab === 'export' && <ExportPanel />}
       </main>
