@@ -28,6 +28,9 @@
     "img_driver": "cars/car_1/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -59,6 +62,9 @@
     "img_driver": "cars/car_2/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": true,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -90,6 +96,9 @@
     "img_driver": "cars/car_3/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": true,
+    "is_constructor_champion": true,
+    "is_double_champion": true,
     "is_champion": true
   },
   {
@@ -121,6 +130,9 @@
     "img_driver": "cars/car_4/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -152,6 +164,9 @@
     "img_driver": "cars/car_5/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": true,
+    "is_constructor_champion": true,
+    "is_double_champion": true,
     "is_champion": true
   },
   {
@@ -183,6 +198,9 @@
     "img_driver": "cars/car_6/driver.jpg",
     "era": "classic",
     "era_label": "Era Clásica (1950 - 1979)",
+    "is_driver_champion": false,
+    "is_constructor_champion": true,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -214,6 +232,9 @@
     "img_driver": "cars/car_7/driver.jpg",
     "era": "v10v8",
     "era_label": "V10 & V8 de Oro (2000 - 2013)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -245,6 +266,9 @@
     "img_driver": "cars/car_8/driver.jpg",
     "era": "classic",
     "era_label": "Era Clásica (1950 - 1979)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -276,6 +300,9 @@
     "img_driver": "cars/car_9/driver.jpg",
     "era": "v10v8",
     "era_label": "V10 & V8 de Oro (2000 - 2013)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -307,7 +334,10 @@
     "img_driver": "cars/car_10/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
-    "is_champion": true
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
+    "is_champion": false
   },
   {
     "Modelo": "Ferrari 312 T2",
@@ -338,6 +368,9 @@
     "img_driver": "cars/car_11/driver.jpg",
     "era": "classic",
     "era_label": "Era Clásica (1950 - 1979)",
+    "is_driver_champion": false,
+    "is_constructor_champion": true,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -369,6 +402,9 @@
     "img_driver": "cars/car_12/driver.jpg",
     "era": "classic",
     "era_label": "Era Clásica (1950 - 1979)",
+    "is_driver_champion": true,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -400,6 +436,9 @@
     "img_driver": "cars/car_13/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": true,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -431,6 +470,9 @@
     "img_driver": "cars/car_14/driver.jpg",
     "era": "classic",
     "era_label": "Era Clásica (1950 - 1979)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -462,6 +504,9 @@
     "img_driver": "cars/car_15/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": true,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -493,6 +538,9 @@
     "img_driver": "cars/car_16/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -524,6 +572,9 @@
     "img_driver": "cars/car_17/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -555,6 +606,9 @@
     "img_driver": "cars/car_18/driver.jpg",
     "era": "v10v8",
     "era_label": "V10 & V8 de Oro (2000 - 2013)",
+    "is_driver_champion": true,
+    "is_constructor_champion": true,
+    "is_double_champion": true,
     "is_champion": true
   },
   {
@@ -586,6 +640,9 @@
     "img_driver": "cars/car_19/driver.jpg",
     "era": "v10v8",
     "era_label": "V10 & V8 de Oro (2000 - 2013)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -617,6 +674,9 @@
     "img_driver": "cars/car_20/driver.jpg",
     "era": "classic",
     "era_label": "Era Clásica (1950 - 1979)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -648,6 +708,9 @@
     "img_driver": "cars/car_21/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -679,6 +742,9 @@
     "img_driver": "cars/car_22/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": true,
+    "is_constructor_champion": true,
+    "is_double_champion": true,
     "is_champion": true
   },
   {
@@ -710,6 +776,9 @@
     "img_driver": "cars/car_23/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -741,6 +810,9 @@
     "img_driver": "cars/car_24/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": true,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -772,6 +844,9 @@
     "img_driver": "cars/car_25/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -803,6 +878,9 @@
     "img_driver": "cars/car_26/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -834,6 +912,9 @@
     "img_driver": "cars/car_27/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -865,6 +946,9 @@
     "img_driver": "cars/car_28/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -896,6 +980,9 @@
     "img_driver": "cars/car_29/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -927,6 +1014,9 @@
     "img_driver": "cars/car_30/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -958,6 +1048,9 @@
     "img_driver": "cars/car_31/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": true,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -989,6 +1082,9 @@
     "img_driver": "cars/car_32/driver.jpg",
     "era": "v10v8",
     "era_label": "V10 & V8 de Oro (2000 - 2013)",
+    "is_driver_champion": true,
+    "is_constructor_champion": true,
+    "is_double_champion": true,
     "is_champion": true
   },
   {
@@ -1020,6 +1116,9 @@
     "img_driver": "cars/car_33/driver.jpg",
     "era": "classic",
     "era_label": "Era Clásica (1950 - 1979)",
+    "is_driver_champion": true,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -1051,6 +1150,9 @@
     "img_driver": "cars/car_34/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1082,6 +1184,9 @@
     "img_driver": "cars/car_35/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": true,
+    "is_constructor_champion": true,
+    "is_double_champion": true,
     "is_champion": true
   },
   {
@@ -1113,6 +1218,9 @@
     "img_driver": "cars/car_36/driver.jpg",
     "era": "classic",
     "era_label": "Era Clásica (1950 - 1979)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1144,6 +1252,9 @@
     "img_driver": "cars/car_37/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": true,
+    "is_constructor_champion": true,
+    "is_double_champion": true,
     "is_champion": true
   },
   {
@@ -1175,6 +1286,9 @@
     "img_driver": "cars/car_38/driver.png",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1206,6 +1320,9 @@
     "img_driver": "cars/car_39/driver.png",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1237,6 +1354,9 @@
     "img_driver": "cars/car_40/driver.jpg",
     "era": "v10v8",
     "era_label": "V10 & V8 de Oro (2000 - 2013)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1268,6 +1388,9 @@
     "img_driver": "cars/car_41/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": true,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -1299,6 +1422,9 @@
     "img_driver": "cars/car_42/driver.jpg",
     "era": "v10v8",
     "era_label": "V10 & V8 de Oro (2000 - 2013)",
+    "is_driver_champion": true,
+    "is_constructor_champion": true,
+    "is_double_champion": true,
     "is_champion": true
   },
   {
@@ -1330,6 +1456,9 @@
     "img_driver": "cars/car_43/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1361,6 +1490,9 @@
     "img_driver": "cars/car_44/driver.png",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1392,6 +1524,9 @@
     "img_driver": "cars/car_45/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": true,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -1423,6 +1558,9 @@
     "img_driver": "cars/car_46/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1454,6 +1592,9 @@
     "img_driver": "cars/car_47/driver.jpg",
     "era": "hybrid",
     "era_label": "Era Turbohíbrida (2014 - Presente)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1485,6 +1626,9 @@
     "img_driver": "cars/car_48/driver.jpg",
     "era": "classic",
     "era_label": "Era Clásica (1950 - 1979)",
+    "is_driver_champion": true,
+    "is_constructor_champion": true,
+    "is_double_champion": true,
     "is_champion": true
   },
   {
@@ -1516,6 +1660,9 @@
     "img_driver": "cars/car_49/driver.jpg",
     "era": "v10v8",
     "era_label": "V10 & V8 de Oro (2000 - 2013)",
+    "is_driver_champion": true,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": true
   },
   {
@@ -1547,6 +1694,9 @@
     "img_driver": "cars/car_50/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1578,6 +1728,9 @@
     "img_driver": "cars/car_51/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1609,6 +1762,9 @@
     "img_driver": "cars/car_52/driver.jpg",
     "era": "turbo",
     "era_label": "Turbo & Efecto Suelo (1980 - 1999)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   },
   {
@@ -1640,6 +1796,9 @@
     "img_driver": "cars/car_53/driver.jpg",
     "era": "v10v8",
     "era_label": "V10 & V8 de Oro (2000 - 2013)",
+    "is_driver_champion": false,
+    "is_constructor_champion": false,
+    "is_double_champion": false,
     "is_champion": false
   }
 ]

@@ -653,24 +653,44 @@ input:focus, textarea:focus {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 215, 0, 0.05);
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  color: #ffd700;
   padding: 8px 14px;
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
   font-weight: 600;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
-.btn-toggle-champions:hover {
+.btn-toggle-champions.driver-champ {
+  background: rgba(255, 215, 0, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  color: #ffd700;
+}
+.btn-toggle-champions.driver-champ:hover {
   background: rgba(255, 215, 0, 0.15);
+  border-color: rgba(255, 215, 0, 0.45);
 }
-
-.btn-toggle-champions.active {
+.btn-toggle-champions.driver-champ.active {
   background: #ffd700;
   color: #000;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  border-color: #ffd700;
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.45);
+}
+
+.btn-toggle-champions.constructor-champ {
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: #38bdf8;
+}
+.btn-toggle-champions.constructor-champ:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.45);
+}
+.btn-toggle-champions.constructor-champ.active {
+  background: #38bdf8;
+  color: #00121e;
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
 }
 
 .results-counter {
@@ -784,14 +804,32 @@ input:focus, textarea:focus {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: rgba(255, 215, 0, 0.9);
-  color: #000;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
   padding: 4px 8px;
   border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.champion-badge.double {
+  background: linear-gradient(135deg, #ffd700 0%, #ff8800 100%);
+  color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 12px rgba(255, 180, 0, 0.45);
+}
+
+.champion-badge.driver {
+  background: rgba(255, 215, 0, 0.95);
+  color: #000;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.champion-badge.constructor {
+  background: rgba(56, 189, 248, 0.95);
+  color: #021526;
+  border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
 .media-overlay {
@@ -1035,14 +1073,32 @@ input:focus, textarea:focus {
 .modal-champion-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  background: #ffd700;
-  color: #000;
+  gap: 6px;
   font-size: 0.75rem;
   font-weight: 800;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 4px;
   text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.modal-champion-badge.double {
+  background: linear-gradient(135deg, #ffd700 0%, #ff8800 100%);
+  color: #000;
+  box-shadow: 0 0 16px rgba(255, 180, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.modal-champion-badge.driver {
+  background: #ffd700;
+  color: #000;
+  box-shadow: 0 0 14px rgba(255, 215, 0, 0.4);
+}
+
+.modal-champion-badge.constructor {
+  background: #38bdf8;
+  color: #021526;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
 }
 
 .modal-era-badge {
@@ -1375,6 +1431,13 @@ input:focus, textarea:focus {
   background: rgba(0, 210, 106, 0.15);
   color: #00d26a;
   border: 1px solid rgba(0, 210, 106, 0.3);
+}
+
+.pos-badge.champ-pos {
+  background: rgba(255, 215, 0, 0.15) !important;
+  color: #ffd700 !important;
+  border: 1px solid rgba(255, 215, 0, 0.4) !important;
+  font-weight: 700;
 }
 
 .telemetry-metrics {

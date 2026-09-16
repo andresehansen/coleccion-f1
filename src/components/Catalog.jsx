@@ -38,7 +38,8 @@ export default function Catalog({ collection = [], onRefresh }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEra, setSelectedEra] = useState('all');
   const [selectedTeam, setSelectedTeam] = useState('all');
-  const [onlyChampions, setOnlyChampions] = useState(false);
+  const [filterDriverChamp, setFilterDriverChamp] = useState(false);
+  const [filterConstructorChamp, setFilterConstructorChamp] = useState(false);
   const [sortBy, setSortBy] = useState('year-desc');
   const [selectedCar, setSelectedCar] = useState(null);
   const [zoomedImg, setZoomedImg] = useState(null); // { url, title }
@@ -61,8 +62,10 @@ export default function Catalog({ collection = [], onRefresh }) {
     const minYear = years.length ? Math.min(...years) : 1950;
     const maxYear = years.length ? Math.max(...years) : 2025;
     const wins = collection.reduce((acc, c) => acc + (parseInt(c.Pil_Victorias) || 0), 0);
-    const champions = collection.filter(c => c.is_champion).length;
-    return { total, minYear, maxYear, wins, champions, teamsCount: teams.length };
+    const driverChamps = collection.filter(c => c.is_driver_champion).length;
+    const constructorChamps = collection.filter(c => c.is_constructor_champion).length;
+    const doubleChamps = collection.filter(c => c.is_double_champion).length;
+    return { total, minYear, maxYear, wins, driverChamps, constructorChamps, doubleChamps, teamsCount: teams.length };
   }, [collection, teams]);
 
   // Filter and sort cars
@@ -92,8 +95,12 @@ export default function Catalog({ collection = [], onRefresh }) {
         return false;
       }
 
-      // Champions
-      if (onlyChampions && !car.is_champion) {
+      // Champions filters
+      if (filterDriverChamp && !car.is_driver_champion) {
+        return false;
+      }
+
+      if (filterConstructorChamp && !car.is_constructor_champion) {
         return false;
       }
 
@@ -105,7 +112,7 @@ export default function Catalog({ collection = [], onRefresh }) {
       if (sortBy === 'model-asc') return (a.Modelo || '').localeCompare(b.Modelo || '');
       return 0;
     });
-  }, [collection, searchTerm, selectedEra, selectedTeam, onlyChampions, sortBy]);
+  }, [collection, searchTerm, selectedEra, selectedTeam, filterDriverChamp, filterConstructorChamp, sortBy]);
 
   // Lock background scrolling and handle Escape key
   useEffect(() => {
@@ -176,8 +183,13 @@ export default function Catalog({ collection = [], onRefresh }) {
             </div>
             <div className="stat-divider"></div>
             <div className="stat-box">
-              <span className="stat-num">{stats.champions}</span>
-              <span className="stat-lbl">Campeones</span>
+              <span className="stat-num">{stats.driverChamps}</span>
+              <span className="stat-lbl">Camp. Pilotos</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-box">
+              <span className="stat-num">{stats.constructorChamps}</span>
+              <span className="stat-lbl">Camp. Equipos</span>
             </div>
             <div className="stat-divider"></div>
             <div className="stat-box">
@@ -268,10 +280,19 @@ export default function Catalog({ collection = [], onRefresh }) {
           </div>
 
           <button 
-            className={`btn-toggle-champions ${onlyChampions ? 'active' : ''}`}
-            onClick={() => setOnlyChampions(!onlyChampions)}
+            className={`btn-toggle-champions driver-champ ${filterDriverChamp ? 'active' : ''}`}
+            onClick={() => setFilterDriverChamp(!filterDriverChamp)}
+            title="Filtrar monoplazas cuyo piloto ganó el Campeonato Mundial de Pilotos"
           >
-            <Trophy size={16} /> Solo Campeones
+            <Trophy size={15} /> Camp. Pilotos ({stats.driverChamps})
+          </button>
+
+          <button 
+            className={`btn-toggle-champions constructor-champ ${filterConstructorChamp ? 'active' : ''}`}
+            onClick={() => setFilterConstructorChamp(!filterConstructorChamp)}
+            title="Filtrar monoplazas cuya escudería ganó el Campeonato de Constructores"
+          >
+            <Award size={15} /> Camp. Constructores ({stats.constructorChamps})
           </button>
 
           <span className="results-counter">
@@ -288,7 +309,13 @@ export default function Catalog({ collection = [], onRefresh }) {
           <p>Prueba ajustando los términos de búsqueda o eliminando los filtros seleccionados.</p>
           <button 
             className="btn btn-secondary" 
-            onClick={() => { setSearchTerm(''); setSelectedEra('all'); setSelectedTeam('all'); setOnlyChampions(false); }}
+            onClick={() => { 
+              setSearchTerm(''); 
+              setSelectedEra('all'); 
+              setSelectedTeam('all'); 
+              setFilterDriverChamp(false); 
+              setFilterConstructorChamp(false); 
+            }}
           >
             Restablecer filtros
           </button>
@@ -327,11 +354,19 @@ export default function Catalog({ collection = [], onRefresh }) {
                     <span className="year-badge">
                       <Calendar size={12} /> {car.Anio}
                     </span>
-                    {car.is_champion && (
-                      <span className="champion-badge" title="Auto o Piloto Campeón del Mundo">
-                        <Trophy size={12} /> Campeón
+                    {car.is_double_champion ? (
+                      <span className="champion-badge double" title="Campeón Mundial de Pilotos y Constructores (Doble Corona)">
+                        <Sparkles size={11} /> Doble Corona
                       </span>
-                    )}
+                    ) : car.is_driver_champion ? (
+                      <span className="champion-badge driver" title="Campeón Mundial de Pilotos">
+                        <Trophy size={11} /> Camp. Piloto
+                      </span>
+                    ) : car.is_constructor_champion ? (
+                      <span className="champion-badge constructor" title="Campeón Mundial de Constructores">
+                        <Award size={11} /> Camp. Constructor
+                      </span>
+                    ) : null}
                   </div>
 
                   <div className="media-overlay">
@@ -415,11 +450,19 @@ export default function Catalog({ collection = [], onRefresh }) {
                 <span className="modal-year-badge">
                   {selectedCar.Anio}
                 </span>
-                {selectedCar.is_champion && (
-                  <span className="modal-champion-badge">
-                    <Trophy size={14} /> Campeón Mundial
+                {selectedCar.is_double_champion ? (
+                  <span className="modal-champion-badge double" title="Campeón Mundial de Pilotos y Constructores">
+                    <Sparkles size={14} /> Doble Corona (Pilotos y Equipos)
                   </span>
-                )}
+                ) : selectedCar.is_driver_champion ? (
+                  <span className="modal-champion-badge driver" title="Campeón Mundial de Pilotos">
+                    <Trophy size={14} /> Campeón de Pilotos
+                  </span>
+                ) : selectedCar.is_constructor_champion ? (
+                  <span className="modal-champion-badge constructor" title="Campeón Mundial de Constructores">
+                    <Award size={14} /> Campeón de Constructores
+                  </span>
+                ) : null}
                 <span className="modal-era-badge">{selectedCar.era_label}</span>
               </div>
               <h2 className="modal-title">{selectedCar.Modelo}</h2>
@@ -582,7 +625,9 @@ export default function Catalog({ collection = [], onRefresh }) {
                   <div className="telemetry-card">
                     <div className="telemetry-header">
                       <span>ESCUDERÍA: {selectedCar.Escuderia}</span>
-                      <span className="pos-badge">Mundial: {selectedCar.Eq_Pos}</span>
+                      <span className={`pos-badge ${selectedCar.is_constructor_champion ? 'champ-pos' : ''}`}>
+                        Mundial: {selectedCar.Eq_Pos}{selectedCar.is_constructor_champion ? ' 🏆' : ''}
+                      </span>
                     </div>
                     <div className="telemetry-metrics">
                       <div className="metric-item">
@@ -608,7 +653,9 @@ export default function Catalog({ collection = [], onRefresh }) {
                   <div className="telemetry-card">
                     <div className="telemetry-header">
                       <span>PILOTO: {selectedCar.Piloto}</span>
-                      <span className="pos-badge highlight">Mundial: {selectedCar.Pil_Pos}</span>
+                      <span className={`pos-badge highlight ${selectedCar.is_driver_champion ? 'champ-pos' : ''}`}>
+                        Mundial: {selectedCar.Pil_Pos}{selectedCar.is_driver_champion ? ' 🏆' : ''}
+                      </span>
                     </div>
                     <div className="telemetry-metrics">
                       <div className="metric-item">
